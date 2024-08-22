@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class BusinessScreenView extends StatelessWidget {
-  const BusinessScreenView({super.key});
+class BusinessScreen extends StatelessWidget {
+  const BusinessScreen({super.key});
 
 
   @override

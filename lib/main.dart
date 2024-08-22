@@ -24,6 +24,17 @@ class MyApp extends StatelessWidget {
           systemOverlayStyle: SystemUiOverlayStyle(
               statusBarIconBrightness: Brightness.dark,
               statusBarColor: Colors.white),
+          iconTheme: IconThemeData(
+            color: Colors.black,
+            size: 35,
+          )
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          selectedItemColor: Colors.deepOrange,
+          backgroundColor: Colors.white,
+          elevation: 30,
+          type: BottomNavigationBarType.fixed,
+
         ),
         scaffoldBackgroundColor: Colors.white,
       ),

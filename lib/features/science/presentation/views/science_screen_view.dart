@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class WeatherScreen extends StatelessWidget {
-  const WeatherScreen({super.key});
+class ScienceScreen extends StatelessWidget {
+  const ScienceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
