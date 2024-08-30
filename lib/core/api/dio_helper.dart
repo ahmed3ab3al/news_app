@@ -1,27 +1,24 @@
 // ignore_for_file: avoid_print
-
-
 import 'package:dio/dio.dart';
 import 'package:news_app/core/api/api_helper.dart';
 import 'package:news_app/core/api/end_points.dart';
 import 'package:news_app/core/errors/exception.dart';
-
 import 'api_interceptors.dart';
 
-class DioHelper extends ApiHelper {
+class DioConsumer extends ApiConsumer {
   final Dio dio;
 
-  DioHelper({required this.dio}) {
+  DioConsumer( {required this.dio}) {
     dio.options.baseUrl = EndPoints.baseUrl;
-    dio.interceptors.add(ApiInterceptors() as Interceptor);
-    // dio.interceptors.add(LogInterceptor(
-    //   request: true,
-    //   requestHeader: true,
-    //   requestBody: true,
-    //   responseHeader: true,
-    //   responseBody: true,
-    //   error: true,
-    // ));
+    dio.interceptors.add(ApiInterceptors());
+    dio.interceptors.add(LogInterceptor(
+      request: true,
+      requestHeader: true,
+      requestBody: true,
+      responseHeader: true,
+      responseBody: true,
+      error: true,
+    ));
   }
   @override
   Future delete(String url,
@@ -42,7 +39,7 @@ class DioHelper extends ApiHelper {
 
   @override
   Future get(String url,
-      {Object? data, Map<String, dynamic>? queryParameters}) async {
+      {dynamic data, Map<String, dynamic>? queryParameters}) async {
     try {
       final response = await dio.get(
         url,
@@ -83,7 +80,7 @@ class DioHelper extends ApiHelper {
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return response;
+      return response.data;
     } on DioException catch (e) {
       handleDioExceptions(e);
     }
@@ -100,7 +97,7 @@ class DioHelper extends ApiHelper {
         data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-      return response;
+      return response.data;
     } on DioException catch (e) {
       handleDioExceptions(e);
     }

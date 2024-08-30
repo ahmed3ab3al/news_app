@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/core/api/dio_helper.dart';
 import 'package:news_app/features/home/presentation/view_models/cubit/cubit.dart';
 import 'package:news_app/features/home/presentation/view_models/cubit/states.dart';
 
@@ -9,7 +11,7 @@ class HomeScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsCubit(),
+      create: (context) => NewsCubit(DioConsumer(dio:Dio()))..getBusinessData(),
       child: BlocConsumer<NewsCubit, NewsStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -18,10 +20,13 @@ class HomeScreenView extends StatelessWidget {
                 title: const Text('NEWS APP'),
                 actions: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      NewsCubit.get(context).getBusinessData();
+                    },
                     icon: const Icon(Icons.search),
                   ),
                 ],
+                scrolledUnderElevation: 0,
               ),
               bottomNavigationBar: BottomNavigationBar(
                   items: NewsCubit.get(context).bottomItems,
