@@ -22,7 +22,8 @@ class BuildNewsItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   image:   DecorationImage(
                       image: NetworkImage(
-                          article['urlToImage'] ?? image
+                        //  image!
+                         article['urlToImage'] ?? image
                       ),
                       fit: BoxFit.cover
                   )
@@ -42,7 +43,7 @@ class BuildNewsItem extends StatelessWidget {
                   Expanded(
                     child: Text(
                         article['title'],
-                        style: Styles.title,
+                        style:Theme.of(context).textTheme.bodyMedium,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis
                     ),

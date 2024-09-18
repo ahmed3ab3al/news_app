@@ -7,7 +7,6 @@ import 'package:news_app/features/business/presentation/views/business_screen_vi
 import 'package:news_app/features/home/presentation/view_models/cubit/states.dart';
 import 'package:news_app/features/science/presentation/views/science_screen_view.dart';
 import 'package:news_app/features/sports/presentation/views/sports_screen_view.dart';
-import '../../../../settings/presentation/views/setting_screen.dart';
 
 class NewsCubit extends Cubit<NewsStates> {
 
@@ -21,7 +20,6 @@ class NewsCubit extends Cubit<NewsStates> {
     const BusinessScreen(),
     const SportsScreen(),
     const ScienceScreen(),
-    const SettingScreen(),
   ];
 
   void changeBottomNav(int index) {
@@ -47,10 +45,6 @@ class NewsCubit extends Cubit<NewsStates> {
       icon: Icon(Icons.science),
       label: 'Science',
     ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      label: 'Settings',
-    ),
   ];
 
 
@@ -62,7 +56,7 @@ class NewsCubit extends Cubit<NewsStates> {
       final response= await api.get(
         EndPoints.topHeadlines,
         queryParameters: {
-          ApiKeys.countryKey:'eg',
+        //  ApiKeys.countryKey:'eg',
           ApiKeys.categoryKey:ApiKeys.business,
           ApiKeys.apiKey:EndPoints.apiKey
         }
@@ -84,7 +78,7 @@ class NewsCubit extends Cubit<NewsStates> {
         final response= await api.get(
             EndPoints.topHeadlines,
             queryParameters: {
-              ApiKeys.countryKey:'eg',
+            //  ApiKeys.countryKey:'eg',
               ApiKeys.categoryKey:ApiKeys.sports,
               ApiKeys.apiKey:EndPoints.apiKey
             }
@@ -109,7 +103,7 @@ if(science.isEmpty){
       final response= await api.get(
           EndPoints.topHeadlines,
           queryParameters: {
-            ApiKeys.countryKey:'eg',
+          //  ApiKeys.countryKey:'eg',
             ApiKeys.categoryKey:ApiKeys.science,
             ApiKeys.apiKey:EndPoints.apiKey
           }
@@ -123,4 +117,12 @@ if(science.isEmpty){
     emit(GetScienceSuccessState());
   }
 }
+
+
+bool isDark = false;
+
+  void changeAppMode() {
+    isDark = !isDark;
+    emit(ChangeAppMode());
+  }
   }

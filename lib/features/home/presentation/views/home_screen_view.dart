@@ -10,35 +10,37 @@ class HomeScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => NewsCubit(DioConsumer(dio:Dio()))..getBusinessData(),
-      child: BlocConsumer<NewsCubit, NewsStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          return Scaffold(
-              appBar: AppBar(
-                title: const Text('NEWS APP'),
-                actions: [
-                  IconButton(
-                    onPressed: () {
-                      NewsCubit.get(context).getBusinessData();
-                    },
-                    icon: const Icon(Icons.search),
-                  ),
-                ],
-                scrolledUnderElevation: 0,
-              ),
-              bottomNavigationBar: BottomNavigationBar(
-                  items: NewsCubit.get(context).bottomItems,
-                  currentIndex: NewsCubit.get(context).currentIndex,
-                  onTap: (index) {
-                    NewsCubit.get(context).changeBottomNav(index);
-                  }),
-              body: NewsCubit.get(context).screens[NewsCubit.get(context).currentIndex],
+    return BlocConsumer<NewsCubit, NewsStates>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        return Scaffold(
+            appBar: AppBar(
+              title: const Text('NEWS APP'),
+              actions: [
+                IconButton(
+                  onPressed: () {
+                  },
+                  icon: const Icon(Icons.search),
+                ),
+                IconButton(
+                  onPressed: () {
+                    NewsCubit.get(context).changeAppMode();
+                  },
+                  icon: const Icon(Icons.brightness_4_outlined),
+                ),
+              ],
+              scrolledUnderElevation: 0,
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+                items: NewsCubit.get(context).bottomItems,
+                currentIndex: NewsCubit.get(context).currentIndex,
+                onTap: (index) {
+                  NewsCubit.get(context).changeBottomNav(index);
+                }),
+            body: NewsCubit.get(context).screens[NewsCubit.get(context).currentIndex],
 
-          );
-        },
-      ),
+        );
+      },
     );
   }
 }

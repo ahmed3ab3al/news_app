@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:news_app/core/utils/colors.dart';
 abstract class Styles {
 
-  static TextStyle appBar =  TextStyle(
+  static TextStyle appBarLight =  TextStyle(
     color: ColorManager.black,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle appBarDark =  TextStyle(
+    color: ColorManager.white,
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
@@ -19,17 +26,40 @@ abstract class Styles {
       color: ColorManager.grey
   );
 
-  static IconThemeData searchIcon =   IconThemeData(
+  static IconThemeData searchIconLight =   IconThemeData(
     color: ColorManager.black,
-    size: 35,
+    size: 28,
+  );
+  static IconThemeData searchIconDark =   IconThemeData(
+    color: ColorManager.white,
+    size: 28,
   );
 
-  static BottomNavigationBarThemeData bottomNavBar =   BottomNavigationBarThemeData(
+  static BottomNavigationBarThemeData bottomNavBarLight =   BottomNavigationBarThemeData(
     selectedItemColor: Colors.deepOrange,
     backgroundColor: ColorManager.white,
     elevation: 30,
     type: BottomNavigationBarType.fixed,
 
+  );
+  static BottomNavigationBarThemeData bottomNavBarDark =   BottomNavigationBarThemeData(
+    selectedItemColor: Colors.deepOrange,
+    backgroundColor:HexColor('333739'),
+    elevation: 30,
+    type: BottomNavigationBarType.fixed,
+    unselectedItemColor: ColorManager.grey
+
+  );
+
+  static TextStyle bodyLight =  const TextStyle(
+      color: Colors.black,
+      fontSize: 18,
+      fontWeight: FontWeight.bold
+  );
+  static TextStyle bodyDark =  const TextStyle(
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: FontWeight.bold
   );
 
 }
