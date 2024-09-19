@@ -3,9 +3,10 @@ class EndPoints {
   static const String baseUrl = 'https://newsapi.org/';
   static const String topHeadlines = 'v2/top-headlines';
   static const String search = 'v2/everything';
-  static const String apiKey = '3c88955c487e4d9db668f011dd85e737';
+ /*
+ * static const String apiKey = '3c88955c487e4d9db668f011dd85e737';*/
+static const String apiKey = '65f7f556ec76449fa7dc7c0069f040ca';
 }
-
 
 class ApiKeys {
   static const String message = 'message';

@@ -41,6 +41,7 @@ dependencies:
   shimmer: ^3.0.0
   hexcolor: ^3.0.1
   shared_preferences: ^2.2.2
+  url_launcher: ^6.3.0
 
 
 

@@ -16,7 +16,7 @@ void main()  async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper().init();
   Bloc.observer = MyBlocObserver();
-  
+
   bool? isDark =CacheHelper().getData(key: 'isDark');
   runApp(MyApp(isDark));
 }
@@ -79,3 +79,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
