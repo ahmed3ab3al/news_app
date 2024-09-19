@@ -28,7 +28,7 @@ class NewsCubit extends Cubit<NewsStates> {
     if (index == 1) {
       getSportsData();
     }
-    else if (index == 2) {
+    if (index == 2) {
       getScienceData();
     }
     emit(ChangeBottomNavState());
@@ -57,7 +57,7 @@ class NewsCubit extends Cubit<NewsStates> {
       final response= await api.get(
         EndPoints.topHeadlines,
         queryParameters: {
-        //  ApiKeys.countryKey:'eg',
+        ApiKeys.countryKey:'us',
           ApiKeys.categoryKey:ApiKeys.business,
           ApiKeys.apiKey:EndPoints.apiKey
         }
@@ -75,11 +75,10 @@ class NewsCubit extends Cubit<NewsStates> {
     emit(GetSportsLoadingState());
     if(sports.isEmpty){
       try {
-
         final response= await api.get(
             EndPoints.topHeadlines,
             queryParameters: {
-            //  ApiKeys.countryKey:'eg',
+             ApiKeys.countryKey:'us',
               ApiKeys.categoryKey:ApiKeys.sports,
               ApiKeys.apiKey:EndPoints.apiKey
             }
@@ -104,7 +103,7 @@ if(science.isEmpty){
       final response= await api.get(
           EndPoints.topHeadlines,
           queryParameters: {
-          //  ApiKeys.countryKey:'eg',
+           ApiKeys.countryKey:'us',
             ApiKeys.categoryKey:ApiKeys.science,
             ApiKeys.apiKey:EndPoints.apiKey
           }
@@ -133,5 +132,27 @@ bool isDark = false;
         emit(ChangeAppMode());
       });
     }
+  }
+
+
+
+
+  List<dynamic>search=[];
+  getSearch(String value) async{
+    emit(GetSearchLoadingState());
+      try {
+        final response= await api.get(
+            EndPoints.search,
+            queryParameters: {
+              ApiKeys.searchKey:value,
+              ApiKeys.apiKey:EndPoints.apiKey
+            }
+        );
+        search = response['articles'];
+        emit(GetSearchSuccessState());
+      }on ServerException catch(e){
+        emit(GetSearchErrorState(error: e.errorModel.message));
+      }
+
   }
   }

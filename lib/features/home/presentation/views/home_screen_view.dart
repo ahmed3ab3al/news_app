@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/api/dio_helper.dart';
 import 'package:news_app/features/home/presentation/view_models/cubit/cubit.dart';
 import 'package:news_app/features/home/presentation/view_models/cubit/states.dart';
+
+import '../../../search_view.dart';
 
 class HomeScreenView extends StatelessWidget {
   const HomeScreenView({super.key});
@@ -19,6 +19,7 @@ class HomeScreenView extends StatelessWidget {
               actions: [
                 IconButton(
                   onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SearchView()));
                   },
                   icon: const Icon(Icons.search),
                 ),

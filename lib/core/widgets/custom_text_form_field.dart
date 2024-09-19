@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class CustomTextFormFiled extends StatelessWidget {
   final TextInputType type;
   final GestureTapCallback? onTap;
+  final Function(String)? onChanged;
   final FormFieldValidator? validate;
   final IconData? prefix;
   final String? label;
   final TextEditingController customController;
+  final InputBorder? updateBorder;
+  final Color? prefixColor;
+  final TextStyle? floatingLabelStyle;
 
   const CustomTextFormFiled({
     super.key,
@@ -16,6 +20,8 @@ class CustomTextFormFiled extends StatelessWidget {
     this.prefix,
     this.onTap,
     this.validate,
+    this.updateBorder,
+    this.prefixColor, this.floatingLabelStyle, this.onChanged,
   });
 
   @override
@@ -30,18 +36,14 @@ class CustomTextFormFiled extends StatelessWidget {
       controller: customController,
       keyboardType: type,
       onTap: onTap,
-      cursorColor: Colors.blue,
+      onChanged: onChanged,
       decoration: InputDecoration(
-        floatingLabelStyle: const TextStyle(color: Colors.blue),
+        floatingLabelStyle: floatingLabelStyle,
         labelText: label,
         prefixIcon: Icon(prefix),
-        prefixIconColor: Colors.blue,
-        border: const OutlineInputBorder(),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Colors.blue,
-          ),
-        ),
+        prefixIconColor: prefixColor,
+            border: updateBorder ,
+        focusedBorder: updateBorder
       ),
     );
   }
