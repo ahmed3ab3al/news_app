@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/api/api_helper.dart';
 import 'package:news_app/core/api/end_points.dart';
+import 'package:news_app/core/cache/cache_helper.dart';
 import 'package:news_app/core/errors/exception.dart';
 import 'package:news_app/features/business/presentation/views/business_screen_view.dart';
 import 'package:news_app/features/home/presentation/view_models/cubit/states.dart';
@@ -121,8 +122,16 @@ if(science.isEmpty){
 
 bool isDark = false;
 
-  void changeAppMode() {
-    isDark = !isDark;
-    emit(ChangeAppMode());
+  void changeAppMode({bool? isDarkFromShared}) {
+    if (isDarkFromShared != null) {
+      isDark = isDarkFromShared;
+      emit(ChangeAppMode());
+    }
+    else {
+      isDark = !isDark;
+      CacheHelper().putData(key: 'isDark', value: isDark).then((value) {
+        emit(ChangeAppMode());
+      });
+    }
   }
   }
