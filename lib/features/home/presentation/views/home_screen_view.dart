@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/features/home/presentation/view_models/cubit/cubit.dart';
 import 'package:news_app/features/home/presentation/view_models/cubit/states.dart';
 
-import '../../../search_view.dart';
+import '../../../../search_view.dart';
 
 class HomeScreenView extends StatelessWidget {
   const HomeScreenView({super.key});

@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/widgets/custom_text_form_field.dart';
 import 'package:news_app/features/home/presentation/view_models/cubit/cubit.dart';
 
-import '../core/widgets/custom_build_news_item.dart';
-import '../core/widgets/custom_separator.dart';
-import 'business/presentation/views/widgets/get_data_loading.dart';
-import 'home/presentation/view_models/cubit/states.dart';
+import 'core/widgets/custom_build_news_item.dart';
+import 'core/widgets/custom_separator.dart';
+import 'features/business/presentation/views/widgets/get_data_loading.dart';
+import 'features/home/presentation/view_models/cubit/states.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({super.key});
