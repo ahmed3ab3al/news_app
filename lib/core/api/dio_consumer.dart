@@ -1,31 +1,28 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/core/api/api_consumer.dart';
+import 'package:news_app/core/api/api_interceptor.dart';
 import 'package:news_app/core/errors/exceptions.dart';
 
 class DioConsumer extends ApiConsumer {
   final Dio dio;
 
-  DioConsumer({required this.dio});
-  @override
-  Future<dynamic> delete(
-    String path, {
-    Object? data,
-    Map<String, dynamic>? queryParameters,
-  }) async {
-    try {
-      final response = await dio.delete(
-        path,
-        data: data,
-        queryParameters: queryParameters,
-      );
-      return response.data;
-    } on DioException catch (e) {
-      handleDioException(e);
-    }
+  DioConsumer({required this.dio}) {
+    dio.options.baseUrl = '';
+    dio.interceptors.add(ApiInterceptor());
+    dio.interceptors.add(
+      LogInterceptor(
+        request: true,
+        requestBody: true,
+        requestHeader: true,
+        requestUrl: true,
+        error: true,
+        responseBody: true,
+      ),
+    );
   }
 
   @override
-  Future<dynamic> get(
+  Future get(
     String path, {
     Object? data,
     Map<String, dynamic>? queryParameters,
@@ -44,15 +41,36 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<dynamic> patch(
+  Future post(
     String path, {
-    Object? data,
+    dynamic data,
     Map<String, dynamic>? queryParameters,
+    bool isFormData = false,
+  }) async {
+    try {
+      final response = await dio.post(
+        path,
+        data: isFormData ? FormData.fromMap(data) : data,
+        queryParameters: queryParameters,
+      );
+
+      return response.data;
+    } on DioException catch (e) {
+      handleDioException(e);
+    }
+  }
+
+  @override
+  Future patch(
+    String path, {
+    dynamic data,
+    Map<String, dynamic>? queryParameters,
+    bool isFormData = false,
   }) async {
     try {
       final response = await dio.patch(
         path,
-        data: data,
+        data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
       return response.data;
@@ -62,18 +80,18 @@ class DioConsumer extends ApiConsumer {
   }
 
   @override
-  Future<dynamic> post(
+  Future delete(
     String path, {
-    Object? data,
+    dynamic data,
     Map<String, dynamic>? queryParameters,
+    bool isFormData = false,
   }) async {
     try {
-      final response = await dio.post(
+      final response = await dio.delete(
         path,
-        data: data,
+        data: isFormData ? FormData.fromMap(data) : data,
         queryParameters: queryParameters,
       );
-
       return response.data;
     } on DioException catch (e) {
       handleDioException(e);
