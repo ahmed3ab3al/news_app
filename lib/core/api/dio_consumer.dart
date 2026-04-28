@@ -7,7 +7,7 @@ class DioConsumer extends ApiConsumer {
   final Dio dio;
 
   DioConsumer({required this.dio}) {
-    dio.options.baseUrl = '';
+    dio.options.baseUrl = 'https://newsapi.org';
     dio.interceptors.add(ApiInterceptor());
     dio.interceptors.add(
       LogInterceptor(
@@ -33,7 +33,6 @@ class DioConsumer extends ApiConsumer {
         data: data,
         queryParameters: queryParameters,
       );
-
       return response.data;
     } on DioException catch (e) {
       handleDioException(e);

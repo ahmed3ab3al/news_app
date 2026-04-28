@@ -20,14 +20,6 @@ class NewsLayout extends StatelessWidget {
               title: Text('News App'),
               actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
             ),
-            bottomNavigationBar: BottomNavigationBar(
-              items: NewsCubit.get(context).bottomNavItem,
-              currentIndex: NewsCubit.get(context).currentIndex,
-              onTap: (index) => NewsCubit.get(context).changeBottomNav(index),
-            ),
-            body: NewsCubit.get(
-              context,
-            ).screens[NewsCubit.get(context).currentIndex],
           );
         },
       ),

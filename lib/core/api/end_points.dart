@@ -1,8 +1,11 @@
 class EndPoints {
-  static const String baseUrl = '';
+  static const String newsData = '/v2/top-headlines';
 }
 
 class ApiKeys {
-  static const String status = '';
-  static const String errorMessage = '';
+  static const String status = 'status';
+  static const String errorMessage = 'message';
+  static const String apiKey = 'a68f68c6ba484697a189d0ff16567d67';
+  static const String categoryKey = 'category';
+  static const String countryKey = 'country';
 }
