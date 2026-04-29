@@ -1,5 +1,15 @@
-abstract class NewsStates {}
+abstract class AppStates {}
 
-class NewsInitialStates extends NewsStates {}
+class AppInitialStates extends AppStates {}
 
-class ChangeBottomNavState extends NewsStates {}
+class ChangeBottomNavState extends AppStates {}
+
+class GetGeneralDataLoadingState extends AppStates {}
+
+class GetGeneralDataSuccessState extends AppStates {}
+
+class GetGeneralDataFaliureState extends AppStates {
+  final String errorMessage;
+
+  GetGeneralDataFaliureState({required this.errorMessage});
+}

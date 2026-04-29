@@ -11,15 +11,29 @@ class NewsLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => NewsCubit(api: DioConsumer(dio: Dio())),
-      child: BlocConsumer<NewsCubit, NewsStates>(
+      create: (BuildContext context) =>
+          AppCubit(api: DioConsumer(dio: Dio()))..getGeneralData(),
+      child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
               title: Text('News App'),
-              actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+              actions: [
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.search, size: 35),
+                ),
+              ],
             ),
+            bottomNavigationBar: BottomNavigationBar(
+              items: AppCubit.get(context).bottomNavItem,
+              currentIndex: AppCubit.get(context).currentIndex,
+              onTap: (index) => AppCubit.get(context).changeBottomNav(index),
+            ),
+            body: AppCubit.get(
+              context,
+            ).screens[AppCubit.get(context).currentIndex],
           );
         },
       ),
