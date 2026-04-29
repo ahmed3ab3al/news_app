@@ -10,5 +10,9 @@ class ApiKeys {
   static const String countryKey = 'country';
   static const String apiKeyValue = 'a68f68c6ba484697a189d0ff16567d67';
   static const String categorySportsValue = 'sports';
+  static const String categoryGeneralValue = 'general';
+  static const String categoryBusinessValue = 'business';
+  static const String categoryScienceValue = 'science';
+
   static const String countryValue = 'us';
 }

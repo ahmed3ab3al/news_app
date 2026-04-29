@@ -16,9 +16,9 @@ class BusinessScreen extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate((context, index) {
                 return CustomNewsTile(
-                  articalModel: AppCubit.get(context).articalsGeneralList[index],
+                  articalModel: AppCubit.get(context).articalsBusinessList[index],
                 );
-              }, childCount: AppCubit.get(context).articalsGeneralList.length),
+              }, childCount: AppCubit.get(context).articalsBusinessList.length),
             ),
           ],
         );

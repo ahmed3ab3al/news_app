@@ -13,3 +13,14 @@ class GetGeneralDataFaliureState extends AppStates {
 
   GetGeneralDataFaliureState({required this.errorMessage});
 }
+
+
+class GetBusinessDataLoadingState extends AppStates {}
+
+class GetBusinessDataSuccessState extends AppStates {}
+
+class GetBusinessDataFaliureState extends AppStates {
+  final String errorMessage;
+
+  GetBusinessDataFaliureState({required this.errorMessage});
+}
