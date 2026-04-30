@@ -20,6 +20,8 @@ class AppCubit extends Cubit<AppStates> {
   int currentIndex = 0;
   List<ArticalModel> articalsGeneralList = [];
   List<ArticalModel> articalsBusinessList = [];
+  List<ArticalModel> articalsScienceList = [];
+  List<ArticalModel> articalsSportsList = [];
 
   List<Widget> screens = [
     GeneralScreen(),
@@ -44,9 +46,12 @@ class AppCubit extends Cubit<AppStates> {
     currentIndex = index;
     if (index == 1) {
       getBusinessData();
-    }else if(index==2){
-      
+    } else if (index == 2) {
+      getScienceData();
+    } else if (index == 3) {
+      getSportsData();
     }
+
     emit(ChangeBottomNavState());
   }
 
@@ -61,17 +66,16 @@ class AppCubit extends Cubit<AppStates> {
           ApiKeys.apiKey: ApiKeys.apiKeyValue,
         },
       );
-      emit(GetGeneralDataSuccessState());
 
       Map<String, dynamic> jsonData = response;
       List<dynamic> articles = jsonData['articles'];
       for (var item in articles) {
         ArticalModel articalModel = ArticalModel.fromjson(item);
         articalsGeneralList.add(articalModel);
+        emit(GetGeneralDataSuccessState());
       }
-    } on DioException catch (e) {
-      handleDioException(e);
-      emit(GetGeneralDataFaliureState(errorMessage: e.response!.data));
+    } on ServerExcption catch (e) {
+      emit(GetGeneralDataFaliureState(errorMessage: e.errorModel.errorMessage));
     }
     return articalsGeneralList;
   }
@@ -87,13 +91,13 @@ class AppCubit extends Cubit<AppStates> {
           ApiKeys.apiKey: ApiKeys.apiKeyValue,
         },
       );
-      emit(GetBusinessDataSuccessState());
 
       Map<String, dynamic> jsonData = response;
       List<dynamic> articles = jsonData['articles'];
       for (var item in articles) {
         ArticalModel articalModel = ArticalModel.fromjson(item);
         articalsBusinessList.add(articalModel);
+        emit(GetBusinessDataSuccessState());
       }
     } on ServerExcption catch (e) {
       emit(
@@ -101,5 +105,54 @@ class AppCubit extends Cubit<AppStates> {
       );
     }
     return articalsBusinessList;
+  }
+
+  Future<List<ArticalModel>> getScienceData() async {
+    try {
+      emit(GetScienceDataLoadingState());
+      final response = await api.get(
+        EndPoints.newsData,
+        queryParameters: {
+          ApiKeys.countryKey: ApiKeys.countryValue,
+          ApiKeys.categoryKey: ApiKeys.categoryScienceValue,
+          ApiKeys.apiKey: ApiKeys.apiKeyValue,
+        },
+      );
+
+      Map<String, dynamic> jsonData = response;
+      List<dynamic> articles = jsonData['articles'];
+      for (var item in articles) {
+        ArticalModel articalModel = ArticalModel.fromjson(item);
+        articalsScienceList.add(articalModel);
+        emit(GetScienceDataSuccessState());
+      }
+    } on ServerExcption catch (e) {
+      emit(GetScienceDataFailureState(errorMessage: e.errorModel.errorMessage));
+    }
+    return articalsScienceList;
+  }
+
+  Future<List<ArticalModel>> getSportsData() async {
+    try {
+      emit(GetSportsDataLoadingState());
+      final response = await api.get(
+        EndPoints.newsData,
+        queryParameters: {
+          ApiKeys.countryKey: ApiKeys.countryValue,
+          ApiKeys.categoryKey: ApiKeys.categorySportsValue,
+          ApiKeys.apiKey: ApiKeys.apiKeyValue,
+        },
+      );
+      Map<String, dynamic> jsonData = response;
+      List<dynamic> articles = jsonData['articles'];
+      for (var item in articles) {
+        ArticalModel articalModel = ArticalModel.fromjson(item);
+        articalsSportsList.add(articalModel);
+        emit(GetSportsDataSuccessState());
+      }
+    } on ServerExcption catch (e) {
+      emit(GetSportsDataFailureState(errorMessage: e.errorModel.errorMessage));
+    }
+    return articalsSportsList;
   }
 }

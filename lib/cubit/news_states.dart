@@ -24,3 +24,20 @@ class GetBusinessDataFaliureState extends AppStates {
 
   GetBusinessDataFaliureState({required this.errorMessage});
 }
+
+
+class GetScienceDataLoadingState extends AppStates{}
+class GetScienceDataSuccessState extends AppStates{}
+class GetScienceDataFailureState extends AppStates{
+   final String errorMessage;
+
+  GetScienceDataFailureState({required this.errorMessage});
+}
+
+class GetSportsDataLoadingState extends AppStates{}
+class GetSportsDataSuccessState extends AppStates{}
+class GetSportsDataFailureState extends AppStates{
+   final String errorMessage;
+
+  GetSportsDataFailureState({required this.errorMessage});
+}
