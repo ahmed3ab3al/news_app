@@ -11,16 +11,24 @@ class GeneralScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
       builder: (BuildContext context, state) {
-        return CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return CustomNewsTile(
-                  articalModel: AppCubit.get(context).articalsGeneralList[index],
-                );
-              }, childCount: AppCubit.get(context).articalsGeneralList.length),
-            ),
-          ],
+        return ListView.separated(
+          itemBuilder: (context, index) {
+            return CustomNewsTile(
+              articalModel: AppCubit.get(context).articalsGeneralList[index],
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                width: double.infinity,
+                height: .8,
+                color: Colors.grey,
+              ),
+            );
+          },
+
+          itemCount: AppCubit.get(context).articalsGeneralList.length,
         );
       },
       listener: (BuildContext context, state) {},

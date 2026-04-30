@@ -24,6 +24,10 @@ class NewsLayout extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(Icons.search, size: 35),
                 ),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(Icons.brightness_4_outlined, size: 35),
+                ),
               ],
             ),
             bottomNavigationBar: BottomNavigationBar(

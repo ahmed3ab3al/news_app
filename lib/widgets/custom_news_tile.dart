@@ -14,16 +14,16 @@ class CustomNewsTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
               articalModel.image ??
-                  'https://www.shutterstock.com/image-illustration/3d-rendering-news-background-perfect-600w-1722423010.jpg',
-              fit: BoxFit.cover,
-              width: 120,
-              height: 120,
+                  'https://cdn.horizons.dz/wp-content/uploads/2025/08/breaking-news.jpg',
+              fit: BoxFit.fill,
+              width: 130,
+              height: 130,
             ),
           ),
           SizedBox(width: 15),
           Expanded(
             child: SizedBox(
-              height: 120,
+              height: 130,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -33,6 +33,7 @@ class CustomNewsTile extends StatelessWidget {
                     child: Text(
                       articalModel.title,
                       maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18,

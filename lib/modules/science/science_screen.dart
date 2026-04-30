@@ -11,18 +11,24 @@ class ScienceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
       builder: (BuildContext context, state) {
-        return CustomScrollView(
-          slivers: [
-            SliverList(
-              delegate: SliverChildBuilderDelegate((context, index) {
-                return CustomNewsTile(
-                  articalModel: AppCubit.get(
-                    context,
-                  ).articalsScienceList[index],
-                );
-              }, childCount: AppCubit.get(context).articalsScienceList.length),
-            ),
-          ],
+        return ListView.separated(
+          itemBuilder: (context, index) {
+            return CustomNewsTile(
+              articalModel: AppCubit.get(context).articalsScienceList[index],
+            );
+          },
+          separatorBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                width: double.infinity,
+                height: .8,
+                color: Colors.grey,
+              ),
+            );
+          },
+
+          itemCount: AppCubit.get(context).articalsScienceList.length,
         );
       },
       listener: (BuildContext context, state) {},
