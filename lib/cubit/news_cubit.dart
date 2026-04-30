@@ -154,4 +154,10 @@ class AppCubit extends Cubit<AppStates> {
     }
     return articalsSportsList;
   }
+
+  bool isDark = false;
+  void changeThemeMode() {
+    isDark = !isDark;
+    emit(ChangeThemeModeState());
+  }
 }

@@ -41,3 +41,5 @@ class GetSportsDataFailureState extends AppStates{
 
   GetSportsDataFailureState({required this.errorMessage});
 }
+
+class ChangeThemeModeState extends AppStates{}
