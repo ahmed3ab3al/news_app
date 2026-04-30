@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/cubit/news_cubit.dart';
 import 'package:news_app/cubit/news_states.dart';
-import 'package:news_app/widgets/custom_news_tile.dart';
+import 'package:news_app/widgets/custom_list_view.dart';
 
 class ScienceScreen extends StatelessWidget {
   const ScienceScreen({super.key});
@@ -10,28 +10,15 @@ class ScienceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
-      builder: (BuildContext context, state) {
-        return ListView.separated(
-          itemBuilder: (context, index) {
-            return CustomNewsTile(
-              articalModel: AppCubit.get(context).articalsScienceList[index],
-            );
-          },
-          separatorBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Container(
-                width: double.infinity,
-                height: .8,
-                color: Colors.grey,
-              ),
-            );
-          },
+      listener: (BuildContext context, state) {},
 
-          itemCount: AppCubit.get(context).articalsScienceList.length,
+      builder: (BuildContext context, state) {
+        return CustomListViewNews(
+          AppCubit.get(context).articalsScienceList,
+          image:
+              'https://s3.eu-west-2.amazonaws.com/lifescience.bucket/wp-content/uploads/2026/04/05160252/Life-Science-Weekly-Updates-Master-1024x640.jpg',
         );
       },
-      listener: (BuildContext context, state) {},
     );
   }
 }

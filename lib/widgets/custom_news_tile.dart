@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:news_app/models/artical_model.dart';
 
 class CustomNewsTile extends StatelessWidget {
-  const CustomNewsTile({super.key, required this.articalModel});
+  const CustomNewsTile({
+    super.key,
+    required this.articalModel,
+    required this.image,
+  });
   final ArticalModel articalModel;
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,8 +18,7 @@ class CustomNewsTile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.network(
-              articalModel.image ??
-                  'https://cdn.horizons.dz/wp-content/uploads/2025/08/breaking-news.jpg',
+              articalModel.image ?? image,
               fit: BoxFit.fill,
               width: 130,
               height: 130,

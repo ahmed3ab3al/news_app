@@ -14,6 +14,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData(
+        scaffoldBackgroundColor: HexColor('333739'),
+        appBarTheme: AppBarThemeData(
+          scrolledUnderElevation: 0,
+          titleTextStyle: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
+          backgroundColor: HexColor('333739'),
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: HexColor('333739'),
+            statusBarIconBrightness: Brightness.light,
+          ),
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: HexColor('333739'),
+          type: BottomNavigationBarType.fixed,
+          elevation: 0,
+          selectedItemColor: Colors.deepOrange,
+          unselectedItemColor: Colors.grey,
+        ),
+      ),
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
         appBarTheme: AppBarThemeData(
