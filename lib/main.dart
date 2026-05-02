@@ -8,8 +8,9 @@ import 'package:news_app/cubit/news_cubit.dart';
 import 'package:news_app/cubit/news_states.dart';
 import 'package:news_app/layout/news_layout.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -95,69 +96,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-/*   
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
-      darkTheme: ThemeData(
-        textTheme: TextTheme(
-          bodyMedium: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        scaffoldBackgroundColor: HexColor('333739'),
-        appBarTheme: AppBarThemeData(
-          scrolledUnderElevation: 0,
-          titleTextStyle: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          iconTheme: IconThemeData(color: Colors.white),
-          backgroundColor: HexColor('333739'),
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: HexColor('333739'),
-            statusBarIconBrightness: Brightness.light,
-          ),
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: HexColor('333739'),
-          type: BottomNavigationBarType.fixed,
-          elevation: 0,
-          selectedItemColor: Colors.deepOrange,
-          unselectedItemColor: Colors.grey,
-        ),
-      ),
-      theme: ThemeData(
-        textTheme: TextTheme(
-          bodyMedium: TextStyle(
-            color: Colors.black,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarThemeData(
-          scrolledUnderElevation: 0,
-          titleTextStyle: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: Colors.black,
-          ),
-          backgroundColor: Colors.white,
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.white,
-          ),
-        ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          elevation: 0,
-          selectedItemColor: Colors.deepOrange,
-        ),
-      ),
-      home: NewsLayout(),
-    );
-   */
