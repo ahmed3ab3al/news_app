@@ -4,17 +4,23 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:news_app/core/api/dio_consumer.dart';
+import 'package:news_app/core/database/cache/cache_helper.dart';
 import 'package:news_app/cubit/news_cubit.dart';
 import 'package:news_app/cubit/news_states.dart';
 import 'package:news_app/layout/news_layout.dart';
 
 void main() async {
 
-  runApp( MyApp());
+    WidgetsFlutterBinding.ensureInitialized();
+  await CacheHelper.init();
+
+  bool isDark = CacheHelper.getData(key: 'isDark');
+  runApp( MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp(this.isDark,{super.key});
+      final bool isDark;
 
   @override
   Widget build(BuildContext context) {
