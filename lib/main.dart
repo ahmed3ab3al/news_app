@@ -26,7 +26,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (BuildContext context) =>
-          AppCubit(api: DioConsumer(dio: Dio()))..getGeneralData(),
+          AppCubit(api: DioConsumer(dio: Dio()))..getGeneralData()..changeThemeMode(
+            isDarkFromShared: isDark
+          ),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {
