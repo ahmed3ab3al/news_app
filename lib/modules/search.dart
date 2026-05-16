@@ -43,7 +43,7 @@ class _SearchViewState extends State<SearchView> {
                     cursorColor: Colors.black,
                     action: TextInputAction.search,
                     onchange: (value) {
-                       AppCubit.get(context).getSearch(value);
+                      AppCubit.get(context).getSearch(value);
                     },
                     onSubmited: (value) {
                       if (formKey.currentState!.validate()) {
