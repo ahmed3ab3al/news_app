@@ -45,3 +45,11 @@ class GetSportsDataFailureState extends AppStates{
 class ChangeThemeModeState extends AppStates{}
 
 class ChangeThemeModeState2 extends AppStates{}
+
+class GetSearechDataLoadingState extends AppStates{}
+class GetSearechDataSuccessState extends AppStates{}
+class GetSearechDataFailureState extends AppStates{
+   final String errorMessage;
+
+  GetSearechDataFailureState({required this.errorMessage});
+}

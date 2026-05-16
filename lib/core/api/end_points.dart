@@ -1,5 +1,6 @@
 class EndPoints {
   static const String newsData = '/v2/top-headlines';
+  static const String searchNewsData = '/v2/everything';
 }
 
 class ApiKeys {
@@ -13,6 +14,6 @@ class ApiKeys {
   static const String categoryGeneralValue = 'general';
   static const String categoryBusinessValue = 'business';
   static const String categoryScienceValue = 'science';
-
   static const String countryValue = 'us';
+  static const String searchKey = 'q';
 }

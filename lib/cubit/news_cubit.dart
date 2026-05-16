@@ -22,6 +22,7 @@ class AppCubit extends Cubit<AppStates> {
   List<ArticalModel> articalsBusinessList = [];
   List<ArticalModel> articalsScienceList = [];
   List<ArticalModel> articalsSportsList = [];
+  List<ArticalModel> articalsSearchList = [];
 
   List<Widget> screens = [
     GeneralScreen(),
@@ -156,13 +157,36 @@ class AppCubit extends Cubit<AppStates> {
     return articalsSportsList;
   }
 
+  Future<List<ArticalModel>> getSearch(String value) async {
+    try {
+      emit(GetSearechDataLoadingState());
+      final response = await api.get(
+        EndPoints.searchNewsData,
+        queryParameters: {
+          ApiKeys.searchKey: value,
+          ApiKeys.apiKey: ApiKeys.apiKeyValue,
+        },
+      );
+      Map<String, dynamic> jsonData = response;
+      List<dynamic> articles = jsonData['articles'];
+      for (var item in articles) {
+        ArticalModel articalModel = ArticalModel.fromjson(item);
+        articalsSearchList.add(articalModel);
+        emit(GetSearechDataSuccessState());
+      }
+    } on ServerExcption catch (e) {
+      emit(GetSearechDataFailureState(errorMessage: e.errorModel.errorMessage));
+    }
+    return articalsSearchList;
+  }
+
   bool isDark = false;
   void changeThemeMode({bool? isDarkFromShared}) {
     if (isDarkFromShared != null) {
       isDark = isDarkFromShared;
       emit(ChangeThemeModeState());
     } else {
-      isDark =! isDark;
+      isDark = !isDark;
       CacheHelper.putData(key: 'isDark', value: isDark).then((value) {});
       emit(ChangeThemeModeState2());
     }
