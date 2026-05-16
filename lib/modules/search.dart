@@ -6,9 +6,16 @@ import 'package:news_app/cubit/news_states.dart';
 import 'package:news_app/widgets/custom_list_view.dart';
 import 'package:news_app/widgets/custom_text_field.dart';
 
-class SearchView extends StatelessWidget {
-  SearchView({super.key});
+class SearchView extends StatefulWidget {
+  const SearchView({super.key});
+
+  @override
+  State<SearchView> createState() => _SearchViewState();
+}
+
+class _SearchViewState extends State<SearchView> {
   final TextEditingController controller = TextEditingController();
+
   final GlobalKey<FormState> formKey = GlobalKey();
 
   @override
@@ -36,7 +43,7 @@ class SearchView extends StatelessWidget {
                     cursorColor: Colors.black,
                     action: TextInputAction.search,
                     onchange: (value) {
-                      // AppCubit.get(context).getSearch(value);
+                       AppCubit.get(context).getSearch(value);
                     },
                     onSubmited: (value) {
                       if (formKey.currentState!.validate()) {

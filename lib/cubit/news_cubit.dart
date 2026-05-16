@@ -160,6 +160,7 @@ class AppCubit extends Cubit<AppStates> {
   Future<List<ArticalModel>> getSearch(String value) async {
     try {
       emit(GetSearechDataLoadingState());
+      articalsSearchList = [];
       final response = await api.get(
         EndPoints.searchNewsData,
         queryParameters: {
