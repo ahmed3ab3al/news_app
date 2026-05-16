@@ -10,25 +10,22 @@ import 'package:news_app/cubit/news_states.dart';
 import 'package:news_app/layout/news_layout.dart';
 
 void main() async {
-
-    WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-
-  bool isDark = CacheHelper.getData(key: 'isDark');
-  runApp( MyApp(isDark));
+  bool? isDark = CacheHelper.getData(key: 'isDark');
+  runApp(MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp(this.isDark,{super.key});
-      final bool isDark;
+  const MyApp(this.isDark, {super.key});
+  final bool? isDark;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) =>
-          AppCubit(api: DioConsumer(dio: Dio()))..getGeneralData()..changeThemeMode(
-            isDarkFromShared: isDark
-          ),
+      create: (BuildContext context) => AppCubit(api: DioConsumer(dio: Dio()))
+        ..getGeneralData()
+        ..changeThemeMode(isDarkFromShared: isDark),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
         builder: (context, state) {

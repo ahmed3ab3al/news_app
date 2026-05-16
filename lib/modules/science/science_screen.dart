@@ -11,9 +11,8 @@ class ScienceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<AppCubit, AppStates>(
       listener: (BuildContext context, state) {},
-
       builder: (BuildContext context, state) {
-        return CustomListViewNews(
+        return  CustomListViewNews(
           AppCubit.get(context).articalsScienceList,
           image:
               'https://s3.eu-west-2.amazonaws.com/lifescience.bucket/wp-content/uploads/2026/04/05160252/Life-Science-Weekly-Updates-Master-1024x640.jpg',

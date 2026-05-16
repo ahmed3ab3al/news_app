@@ -43,3 +43,5 @@ class GetSportsDataFailureState extends AppStates{
 }
 
 class ChangeThemeModeState extends AppStates{}
+
+class ChangeThemeModeState2 extends AppStates{}
