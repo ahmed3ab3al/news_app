@@ -47,7 +47,7 @@ class _SearchViewState extends State<SearchView> {
                     },
                     onSubmited: (value) {
                       if (formKey.currentState!.validate()) {
-                        AppCubit.get(context).getSearch(value);
+                      //  AppCubit.get(context).getSearch(value);
                       }
                     },
                   ),
